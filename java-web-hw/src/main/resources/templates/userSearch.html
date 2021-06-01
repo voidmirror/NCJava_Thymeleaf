@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h3>Search user</h3>
+  <form action="#" th:action="@{/appform-search}" th:object="${userModel}" method="post">
+    <!--  <p>Id: <input type="text" th:field="*{id}" /></p>-->
+    <p>First Name: <input type="text" th:field="*{firstName}" /></p>
+    <p>Last Name: <input type="text" th:field="*{lastName}" /></p>
+    <p><input type="submit" value="Search" /> <input type="reset" value="Reset" /></p>
+  </form>
+</body>
+</html>

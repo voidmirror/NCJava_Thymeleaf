@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User found!</title>
+</head>
+<body>
+<!--  <div>-->
+<!--    <ul data-bind="foreach: userList">-->
+<!--      <li>-->
+<!--        <span data-bind="text: &data"></span>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </div>-->
+    <div>
+        <p th:text="'Found: ' + ${user}" />
+    </div>
+<div>
+    <table border="1">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+        <tr th:each ="us : ${userList}">
+            <td th:utext="${us.firstName}">...</td>
+            <td th:utext="${us.lastName}">...</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
