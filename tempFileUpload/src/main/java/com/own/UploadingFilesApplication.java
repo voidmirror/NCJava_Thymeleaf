@@ -2,6 +2,8 @@ package com.own;
 
 import javax.servlet.MultipartConfigElement;
 
+import com.own.config.MailConfig;
+import com.own.service.MailSender;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,6 +11,7 @@ import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.util.unit.DataSize;
 
 import java.util.regex.Matcher;
@@ -27,12 +30,7 @@ public class UploadingFilesApplication {
     }
 
     public static void main(String[] args) {
-//        SpringApplication.run(UploadingFilesApplication.class, args);
-
-        String s = "u";
-        Pattern pattern = Pattern.compile(".+@.+\\..+");
-        Matcher matcher = pattern.matcher(s);
-        System.out.println(matcher.find());
+        SpringApplication.run(UploadingFilesApplication.class, args);
 
     }
 }

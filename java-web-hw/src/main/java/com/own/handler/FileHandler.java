@@ -1,7 +1,9 @@
 package com.own.handler;
 
+import com.own.auxiliary.ResString;
 import com.own.model.User;
 import com.own.repository.UserRepository;
+import com.own.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -11,7 +13,7 @@ import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class FileHandler {
+public class FileHandler implements ResString {
     private String name;
     private MultipartFile file;
 
@@ -73,6 +75,13 @@ public class FileHandler {
                 Matcher matcher = pattern.matcher(user.getEmail());
                 if (!matcher.find()) {
                     return false;
+                }
+
+                try {
+                    MailService mailService = new MailService();
+                    mailService.sendMail(user.getEmail(), welcomeToServerEmailSubject, welcomeToServerEmailText);
+                } catch (Exception e) {
+                    System.out.println("Email yandex error (normal, don't panic in FileHandler)");
                 }
 
                 try {

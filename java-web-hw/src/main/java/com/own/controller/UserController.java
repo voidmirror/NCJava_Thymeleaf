@@ -1,7 +1,9 @@
 package com.own.controller;
 
+import com.own.auxiliary.ResString;
 import com.own.model.User;
 import com.own.repository.UserRepository;
+import com.own.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +15,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-public class UserController {
+public class UserController implements ResString {
 
     @Autowired
     private UserRepository userRepository;
@@ -33,6 +35,11 @@ public class UserController {
     public String userSubmit(@ModelAttribute @Valid User user, BindingResult bindingResult/*, HttpServletResponse response*/) {
         if (bindingResult.hasErrors()) {
             return "errorNotify";
+        }
+        try {
+            sendWelcomeEmail(user.getEmail());
+        } catch (Exception e) {
+            System.out.println("Email yandex error (normal, don't panic)");
         }
         userRepository.save(user);
         System.out.println(user);
@@ -63,6 +70,11 @@ public class UserController {
 //    public Contact createContact(@RequestBody Contact contact) {
 //        return contactRepository.save(contact);
 //    }
+
+    private void sendWelcomeEmail(String email) {
+        MailService mailService = new MailService();
+        mailService.sendMail(email, welcomeToServerEmailSubject, welcomeToServerEmailText);
+    }
 
 
 }
