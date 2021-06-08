@@ -81,7 +81,7 @@ public class FileHandler implements ResString {
                     MailService mailService = new MailService();
                     mailService.sendMail(user.getEmail(), welcomeToServerEmailSubject, welcomeToServerEmailText);
                 } catch (Exception e) {
-                    System.out.println("Email yandex error (normal, don't panic in FileHandler)");
+                    System.out.println("Email yandex error (normal, don't panic in FileHandler). The problem is in yandex-services: they cannot be activated without user's activity. See ya.cc in exception.printStackTrace");
                 }
 
                 try {

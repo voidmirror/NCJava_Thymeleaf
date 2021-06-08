@@ -39,7 +39,7 @@ public class UserController implements ResString {
         try {
             sendWelcomeEmail(user.getEmail());
         } catch (Exception e) {
-            System.out.println("Email yandex error (normal, don't panic)");
+            System.out.println("Email yandex error (normal, don't panic). The problem is in yandex-services: they cannot be activated without user's activity. See ya.cc in exception.printStackTrace");
         }
         userRepository.save(user);
         System.out.println(user);
